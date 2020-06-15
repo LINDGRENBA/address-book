@@ -48,15 +48,13 @@ AddressBook.prototype.findEmptyEmergencyContact = function (){
   return false; 
 }
 
-AddressBook.prototype.addEmergencyContact = function (emergencyContact) {
+AddressBook.prototype.addEmergencyContactAll = function () {
   
   for (let i = 0; i <this.contacts.length; i ++) {
-    if (this.contacts [i]){
-    this.contacts[i].emergencyContact = emergencyContact;
-      return true;
+    if (this.contacts[i]){
+    this.contacts[i].emergencyContact = " ";
     }
   };
-  return false; 
 }
 
 //Business Logic for Contacts (#2)-----
@@ -103,5 +101,5 @@ contact2.update("blue");
 console.log(contact2);
 contact2.newFirstName("Betty");
 console.log(contact2);
-contact2.addEmergencyContact("Dude");
+addressBook.addEmergencyContactAll();
 addressBook.findEmptyEmergencyContact();
