@@ -16,8 +16,10 @@ AddressBook.prototype.assignId = function(contact) {
 
 AddressBook.prototype.findContact = function (id){
   for (let i = 0; i<this.contacts.length; i++) {
+    if (this.contacts[i]){
     if(this.contacts[i].id == id){
       return this.contacts[i]
+      }
     }
   };
   return false; 
@@ -25,9 +27,11 @@ AddressBook.prototype.findContact = function (id){
 
 AddressBook.prototype.deleteContact = function (id) {
   for (let i = 0; i <this.contacts.length; i ++) {
+    if (this.contacts [i]){
     if (this.contacts[i].id == id){
       delete this.contacts[i];
       return true;
+    }
     }
   };
   return false; 
@@ -42,6 +46,14 @@ function Contact (firstName, lastName, phoneNumber) {
 
 Contact.prototype.fullName = function () {
   return this.firstName + " " + this.lastName;
+}
+
+Contact.prototype.update = function (favoriteColor) {
+  return this.favoriteColor = favoriteColor; 
+  // return this.favoriteColor;
+}
+Contact.prototype.newFirstName = function (newFirstName) {
+  return this.firstName = newFirstName;
 }
 
 let addressBook = new AddressBook(); //Adds a new object for #1 --> the new address book = addressBook
@@ -59,3 +71,13 @@ console.log(contact4);
 console.log (contact2);
 
 
+/*
+contact2.update() = "blue";
+console.log(contact2); 
+let favoriteColor = "blue";
+addressBook.update(contact2);*/
+
+contact2.update("blue");
+console.log(contact2);
+contact2.newFirstName("Betty");
+console.log(contact2);
