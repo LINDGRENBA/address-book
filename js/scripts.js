@@ -88,11 +88,18 @@ function displayContactDetails(addressBookToDisplay) {
   contactsList.html(htmlForContactInfo);
 }
 
+function attachContactListeners() {
+  $("ul#contacts").on("click", "li", function () {
+    alert("The ID of this element is " + $(this).attr('class') + ".");
+  })
+}
+
 $(document).ready(function() {
   let ourAddressBook = new AddressBook();
   
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
+    attachContactListeners();
     const inputtedFirstName = $("input#new-first-name").val();
     const inputtedLastName = $("input#new-last-name").val();
     const inputtedPhoneNumber = $("input#new-phone-number").val();
