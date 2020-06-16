@@ -78,15 +78,27 @@ Contact.prototype.newFirstName = function(newFirstName) {
 }
 
 //user interface logic
+
+function displayContactDetails(addressBookToDisplay) {
+  let contactsList = $("ul#contacts");
+  let htmlForContactInfo = "";
+  addressBookToDisplay.contacts.forEach(function(contact) {
+    htmlForContactInfo += "<li class=" + contact.id + ">" + contact.fullName() + "</li>";
+  });
+  contactsList.html(htmlForContactInfo);
+}
+
 $(document).ready(function() {
+  let ourAddressBook = new AddressBook();
+  
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
-    let ourAddressBook = new AddressBook();
     const inputtedFirstName = $("input#new-first-name").val();
     const inputtedLastName = $("input#new-last-name").val();
     const inputtedPhoneNumber = $("input#new-phone-number").val();
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     ourAddressBook.addContact(newContact);
+    displayContactDetails(ourAddressBook);
   })
 })
 
