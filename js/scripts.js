@@ -133,7 +133,7 @@ function attachContactListeners() {
 }
 
 $(document).ready(function() {
-  $("form#new-contact").submit(function(event) {
+  $("button#formSubmit").click(function(event) {
     event.preventDefault();
     attachContactListeners(ourAddressBook);
     const inputtedFirstName = $("input#new-first-name").val();
@@ -157,6 +157,13 @@ $(document).ready(function() {
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedWorkPhoneNumber, inputtedPersonalPhoneNumber, inputtedWorkEmailAddress, inputtedPersonalEmailAddress, inputtedWorkAddress, inputtedPersonalAddress);
     ourAddressBook.addContact(newContact);
     displayContactDetails();
+    $(".hiddenInput").hide();
+  })
+  $("button#addInputField").click(function(event) {
+    event.preventDefault();
+    const newField = $("select#inputField").val();
+
+    $(`div#${newField}`).show();
   })
 })
 
