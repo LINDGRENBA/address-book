@@ -78,34 +78,44 @@ Contact.prototype.newFirstName = function(newFirstName) {
 }
 
 //user interface logic
+let ourAddressBook = new AddressBook();
 
-function displayContactDetails(addressBookToDisplay) {
+function displayContactDetails() {
   let contactsList = $("ul#contacts");
   let htmlForContactInfo = "";
-  addressBookToDisplay.contacts.forEach(function(contact) {
+  ourAddressBook.contacts.forEach(function(contact) {
     htmlForContactInfo += "<li class=" + contact.id + ">" + contact.fullName() + "</li>";
   });
   contactsList.html(htmlForContactInfo);
 }
 
+function showContact(contactId) {
+  const contact = ourAddressBook.findContact(contactId);
+  $("#show-contact").show();
+  $(".first-name").html(contact.firstName);
+  $(".last-name").html(contact.lastName);
+  $(".phone-number").html(contact.phoneNumber);
+  let buttons = $("#buttons");
+  buttons.empty();
+  buttons.append(`<button class='deleteButton ${contact.id}'>Delete</button>`);
+}
+
 function attachContactListeners() {
-  $("ul#contacts").on("click", "li", function () {
-    alert("The ID of this element is " + $(this).attr('class') + ".");
-  })
+  $("ul#contacts").on("click", "li", function() {
+    showContact($(this).attr("class"));
+  });
 }
 
 $(document).ready(function() {
-  let ourAddressBook = new AddressBook();
-  
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
-    attachContactListeners();
+    attachContactListeners(ourAddressBook);
     const inputtedFirstName = $("input#new-first-name").val();
     const inputtedLastName = $("input#new-last-name").val();
     const inputtedPhoneNumber = $("input#new-phone-number").val();
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     ourAddressBook.addContact(newContact);
-    displayContactDetails(ourAddressBook);
+    displayContactDetails();
   })
 })
 
