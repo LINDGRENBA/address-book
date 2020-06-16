@@ -104,6 +104,11 @@ function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
     showContact($(this).attr("class"));
   });
+  $("#buttons").on('click', ".deleteButton", function() {
+    ourAddressBook.deleteContact($(this).attr('class').slice(12));
+    $("#show-contact").hide();
+    displayContactDetails();
+  });
 }
 
 $(document).ready(function() {
