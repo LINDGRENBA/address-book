@@ -132,30 +132,42 @@ function attachContactListeners() {
   });
 }
 
+function pullInputData() {
+  const inputtedFirstName = $("input#new-first-name").val();
+  const inputtedLastName = $("input#new-last-name").val();
+  const inputtedWorkPhoneNumber = $("input#new-work-phone-number").val();
+  const inputtedPersonalPhoneNumber = $("input#new-personal-phone-number").val();
+  const inputtedWorkEmailAddress = $("input#new-work-email-address").val();
+  const inputtedPersonalEmailAddress = $("input#new-personal-email-address").val();
+  const inputtedWorkAddress = $("input#new-work-address").val();
+  const inputtedPersonalAddress = $("input#new-personal-address").val();
+  return [inputtedFirstName, inputtedLastName, inputtedWorkPhoneNumber, inputtedPersonalPhoneNumber, inputtedWorkEmailAddress, inputtedPersonalEmailAddress, inputtedWorkAddress, inputtedPersonalAddress]
+}
+
+function clearDataInputs() {
+  $("input#new-first-name").val('');
+  $("input#new-last-name").val('');
+  $("input#new-work-phone-number").val('');
+  $("input#new-personal-phone-number").val('');
+  $("input#new-work-email-address").val('');
+  $("input#new-personal-email-address").val('');
+  $("input#new-work-address").val('');
+  $("input#new-personal-address").val('');
+}
+
+function addNewContact(dataArray) {
+  let newContact = new Contact(dataArray[0], dataArray[1], dataArray[2], dataArray[3], dataArray[4], dataArray[5], dataArray[6], dataArray[7]);
+  ourAddressBook.addContact(newContact);
+}
+
 $(document).ready(function() {
   $("button#formSubmit").click(function(event) {
     event.preventDefault();
     attachContactListeners(ourAddressBook);
-    const inputtedFirstName = $("input#new-first-name").val();
-    const inputtedLastName = $("input#new-last-name").val();
-    const inputtedWorkPhoneNumber = $("input#new-work-phone-number").val();
-    const inputtedPersonalPhoneNumber = $("input#new-personal-phone-number").val();
-    const inputtedWorkEmailAddress = $("input#new-work-email-address").val();
-    const inputtedPersonalEmailAddress = $("input#new-personal-email-address").val();
-    const inputtedWorkAddress = $("input#new-work-address").val();
-    const inputtedPersonalAddress = $("input#new-personal-address").val();
+    dataArray = pullInputData();
+    addNewContact(dataArray);
 
-    $("input#new-first-name").val('');
-    $("input#new-last-name").val('');
-    $("input#new-work-phone-number").val('');
-    $("input#new-personal-phone-number").val('');
-    $("input#new-work-email-address").val('');
-    $("input#new-personal-email-address").val('');
-    $("input#new-work-address").val('');
-    $("input#new-personal-address").val('');
-
-    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedWorkPhoneNumber, inputtedPersonalPhoneNumber, inputtedWorkEmailAddress, inputtedPersonalEmailAddress, inputtedWorkAddress, inputtedPersonalAddress);
-    ourAddressBook.addContact(newContact);
+    clearDataInputs();
     displayContactDetails();
     $(".hiddenInput").hide();
   })
