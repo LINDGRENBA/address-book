@@ -68,6 +68,23 @@ This project will store your contacts so that you can look up your best friend's
 * Input: User clicks "John Doe"
 * Output: <li>John Doe</li>, <li>360-555-6677<li>
 
+#### Behavior Program will create an address object
+* Input: User creates a Contract 
+* Output: {work = 'str', personal = 'str'}
+
+#### Behavior Program will add user input addresses to address object
+* Input: work email: john@work.com
+* Output: email{work: john@work.com, personal = null};
+
+#### Behavior Program adds address object to relevant contact
+* Input: None necessary
+* Output: contact(1, John Doe, 360-555-6677, email{address object}, address{address object})
+
+
+#### Behavior
+* Input :
+* Output :
+
 ## Known Bugs
 
 #### Not Yet Resolved

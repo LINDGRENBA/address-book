@@ -79,6 +79,12 @@ Contact.prototype.newFirstName = function(newFirstName) {
   this.firstName = newFirstName;
 }
 
+//business logic for addresses ----
+function Address(work, personal) {
+  this.work = work;
+  this.personal = personal;
+}
+
 //user interface logic
 let ourAddressBook = new AddressBook();
 
