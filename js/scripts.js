@@ -37,16 +37,16 @@ AddressBook.prototype.deleteContact = function (id) {
   return false; 
 }
 
-AddressBook.prototype.findEmptyEmergencyContact = function (){
-  for (let i = 0; i<this.contacts.length; i++) {
-    if (this.contacts[i]) {
-      if (emergencyContact = " ") {
-        alert(this.contacts[i].firstName + "Fill in your Emergency Contact Info");
-      }
-    }
-  };
-  return false; 
-}
+// AddressBook.prototype.findEmptyEmergencyContact = function (){
+//   for (let i = 0; i<this.contacts.length; i++) {
+//     if (this.contacts[i]) {
+//       if (emergencyContact = " ") {
+//         alert(this.contacts[i].firstName + "Fill in your Emergency Contact Info");
+//       }
+//     }
+//   };
+//   return false; 
+// }
 
 AddressBook.prototype.addEmergencyContactAll = function () {
   
